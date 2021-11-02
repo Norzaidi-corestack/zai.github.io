@@ -18,7 +18,7 @@ bookNowBtn.addEventListener("click", function () {
 function BookNow(userName, userEmail, userPax, userRemarks) {
     let url = 'https://api.sheety.co/745d4150847f5d6ba056979cb046e2b0/bookingNameList/bookings';
     let body = {
-        booking: {
+        bookings: {
             name: userName,
             email: userEmail,
             pax: userPax,
@@ -35,7 +35,7 @@ function BookNow(userName, userEmail, userPax, userRemarks) {
         .then((response) => response.json())
         .then(json => {
             // Do something with object
-            console.log(json.booking);
+            console.log(json.bookings);
             alert(json.booking.name + " added in the list!")
         });
 }
