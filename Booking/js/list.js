@@ -4,12 +4,12 @@ refreshNowBtn.addEventListener("click", function () {
 })
 
 function GetBooking() {
-    let url = 'https://api.sheety.co/745d4150847f5d6ba056979cb046e2b0/bookingNameList/sheet1';
+    let url = 'https://api.sheety.co/745d4150847f5d6ba056979cb046e2b0/bookingNameList/bookings';
     fetch(url)
         .then((response) => response.json())
         .then(json => {
             // Do something with the data
-            console.log(json.booking);
+            console.log(json.bookings);
 
             let bookingNameList = document.getElementById("bookingNameList")
             let bookingIds = []
@@ -20,12 +20,12 @@ function GetBooking() {
             }
 
             //load all rows from Sheety API
-            for (let i = 0; i < json.booking.length; i++) {
-                let gName = json.booking[i].name;
-                let gEmail = json.booking[i].email;
-                let gPax = json.booking[i].pax;
-                let gRemarks = json.booking[i].remarks;
-                let gId = json.booking[i].id;
+            for (let i = 0; i < json.bookings.length; i++) {
+                let gName = json.bookings[i].name;
+                let gEmail = json.bookings[i].email;
+                let gPax = json.bookings[i].pax;
+                let gRemarks = json.bookings[i].remarks;
+                let gId = json.bookings[i].id;
                 let btnId = "delete" + gId;
 
                 let row = bookingNameList.insertRow(bookingNameList.rows.length)
@@ -52,12 +52,12 @@ function GetBooking() {
 }
 
 function DeleteBooking(id) {
-    let url = 'https://api.sheety.co/745d4150847f5d6ba056979cb046e2b0/bookingNameList/sheet1' + id;
+    let url = 'https://api.sheety.co/745d4150847f5d6ba056979cb046e2b0/bookingNameList/bookings/' + id;
     fetch(url, {
         method: 'DELETE',
     })
         .then(() => {
-            alert("Record id " + id + " deleted!")
+            alert("Record id" + id + "deleted!")
             GetBooking()
         });
 }
